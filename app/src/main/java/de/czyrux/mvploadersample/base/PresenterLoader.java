@@ -4,8 +4,15 @@ import android.content.Context;
 import android.support.v4.content.Loader;
 import android.util.Log;
 
+/**
+ * https://medium.com/@czyrux/presenter-surviving-orientation-changes-with-loaders-6da6d86ffbbf#.ywgzlo1p7
+ * @param <T>
+ */
 public final class PresenterLoader<T extends Presenter> extends Loader<T> {
 
+    /**
+     *  this interface will hide the details about how to create a Presenter when is required.
+     */
     private final PresenterFactory<T> factory;
     private T presenter;
     private final String tag;
@@ -16,6 +23,11 @@ public final class PresenterLoader<T extends Presenter> extends Loader<T> {
         this.tag = tag;
     }
 
+    /**
+     *  Will be called by the Framework for a new or already created Loader once Activity onStart() is reached.
+     *  In here we check whether we hold a Presenter instance (— in which situation it will be delivered immediately) or the Presenter needs to be created.
+     * todo 1
+     */
     @Override
     protected void onStartLoading() {
         Log.i("loader", "onStartLoading-" + tag);
@@ -30,6 +42,10 @@ public final class PresenterLoader<T extends Presenter> extends Loader<T> {
         forceLoad();
     }
 
+    /**
+     * todo 2 Called when forceLoad() is invoked
+     * Here we are calling the Factory to create our Presenter and delivering the result.
+     */
     @Override
     protected void onForceLoad() {
         Log.i("loader", "onForceLoad-" + tag);
@@ -41,6 +57,10 @@ public final class PresenterLoader<T extends Presenter> extends Loader<T> {
         deliverResult(presenter);
     }
 
+    /**
+     * todo 3 will deliver our Presenter to the Activity/Fragment.
+     * @param data
+     */
     @Override
     public void deliverResult(T data) {
         super.deliverResult(data);
@@ -52,6 +72,10 @@ public final class PresenterLoader<T extends Presenter> extends Loader<T> {
         Log.i("loader", "onStopLoading-" + tag);
     }
 
+    /**
+     * todo 4 will be call before the Loader gets destroyed,
+     * giving us the chance to communicate this to the Presenter in case some ongoing operation could be cancelled or additional clean ups would be required.
+     */
     @Override
     protected void onReset() {
         Log.i("loader", "onReset-" + tag);
