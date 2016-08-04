@@ -16,6 +16,12 @@ public abstract class BasePresenterFragment<P extends Presenter<V>, V> extends F
     private boolean delivered = false;
     private Presenter<V> presenter;
 
+    /**
+     * todo 6c BasePresenterFragment#onActivityCreated initLoader()
+     * As pointed out in the previous linked blog post do not call initLoader() within a Fragment’s onCreate() — 
+     * always wait for onActivityCreated() or you’ll run into issues where Loaders appear to be shared across fragments
+     * @param savedInstanceState
+     */
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
@@ -48,6 +54,9 @@ public abstract class BasePresenterFragment<P extends Presenter<V>, V> extends F
         });
     }
 
+    /**
+     * todo 9c fragment thì onResume mới gắn view vào
+     */
     @Override
     public void onResume() {
         super.onResume();
@@ -55,6 +64,9 @@ public abstract class BasePresenterFragment<P extends Presenter<V>, V> extends F
         presenter.onViewAttached(getPresenterView());
     }
 
+    /**
+     * todo 9d
+     */
     @Override
     public void onPause() {
         presenter.onViewDetached();

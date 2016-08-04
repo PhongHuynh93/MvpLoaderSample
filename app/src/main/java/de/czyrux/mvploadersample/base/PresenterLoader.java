@@ -26,7 +26,7 @@ public final class PresenterLoader<T extends Presenter> extends Loader<T> {
     /**
      *  Will be called by the Framework for a new or already created Loader once Activity onStart() is reached.
      *  In here we check whether we hold a Presenter instance (— in which situation it will be delivered immediately) or the Presenter needs to be created.
-     * todo 1
+     * todo 1 onStartLoading
      */
     @Override
     protected void onStartLoading() {
@@ -43,7 +43,8 @@ public final class PresenterLoader<T extends Presenter> extends Loader<T> {
     }
 
     /**
-     * todo 2 Called when forceLoad() is invoked
+     * todo 2 onForceLoad
+     * Called when forceLoad() is invoked
      * Here we are calling the Factory to create our Presenter and delivering the result.
      */
     @Override
@@ -58,7 +59,8 @@ public final class PresenterLoader<T extends Presenter> extends Loader<T> {
     }
 
     /**
-     * todo 3 will deliver our Presenter to the Activity/Fragment.
+     * todo 3 deliverResult
+     * will deliver our Presenter to the Activity/Fragment.
      * @param data
      */
     @Override
@@ -67,13 +69,19 @@ public final class PresenterLoader<T extends Presenter> extends Loader<T> {
         Log.i("loader", "deliverResult-" + tag);
     }
 
+    /**
+     * todo 1b onStopLoading
+     * called when onStop()
+     */
     @Override
     protected void onStopLoading() {
         Log.i("loader", "onStopLoading-" + tag);
     }
 
     /**
-     * todo 4 will be call before the Loader gets destroyed,
+     * todo 4 onReset
+     * called when onDestroy()
+     * will be call before the Loader gets destroyed,
      * giving us the chance to communicate this to the Presenter in case some ongoing operation could be cancelled or additional clean ups would be required.
      */
     @Override

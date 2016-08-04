@@ -14,6 +14,12 @@ import de.czyrux.mvploadersample.presenter.SamplePresenter;
 import de.czyrux.mvploadersample.presenter.SamplePresenterFactory;
 import de.czyrux.mvploadersample.presenter.SampleView;
 
+/**
+ * we need to connects our activities and fragments.
+ * The connection point will be the LoaderManager.
+ * We will call FragmentActivity’s getSupportLoaderManager() or Fragment’s getLoaderManager() to get our instance and then call initLoader().
+ * Google recommends calling this method in Activity#onCreate() or Fragment#onActivityCreated().
+ */
 public class SampleActivity extends BasePresenterActivity<SamplePresenter, SampleView> implements SampleView {
     private static final String TAG = "SampleActivity";
     private static final int NUMBER_OF_PAGES = 3;
