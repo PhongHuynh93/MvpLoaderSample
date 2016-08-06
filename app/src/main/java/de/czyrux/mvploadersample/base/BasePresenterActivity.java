@@ -28,6 +28,8 @@ public abstract class BasePresenterActivity<P extends Presenter<V>, V> extends A
          * an optional Bundle — which in this case won’t be need,
          * and an instance of LoaderCallbacks.
          *
+         * todo - ta có các callback để giao tiếp với life cycler trong loader 
+         *
          * This call to initLoader will hook ourselves in the component lifecycle,
          * receiving a call onStartLoading() when onStart() method is call and onStopLoading() when onStop().
          *

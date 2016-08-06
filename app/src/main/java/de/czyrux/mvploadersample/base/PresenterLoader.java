@@ -9,7 +9,8 @@ import hugo.weaving.DebugLog;
 /**
  * https://medium.com/@czyrux/presenter-surviving-orientation-changes-with-loaders-6da6d86ffbbf#.ywgzlo1p7
  * @param <T>
- *     A class that performs asynchronous loading of data.
+ * todo    A class that performs asynchronous loading of data.
+ * todo ta thấy có life cycler vủa loader
  */
 public final class PresenterLoader<T extends Presenter> extends Loader<T> {
 
