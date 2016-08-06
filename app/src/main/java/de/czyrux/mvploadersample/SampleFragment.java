@@ -13,6 +13,7 @@ import de.czyrux.mvploadersample.base.PresenterFactory;
 import de.czyrux.mvploadersample.presenter.SamplePresenter;
 import de.czyrux.mvploadersample.presenter.SamplePresenterFactory;
 import de.czyrux.mvploadersample.presenter.SampleView;
+import hugo.weaving.DebugLog;
 
 public class SampleFragment extends BasePresenterFragment<SamplePresenter, SampleView> implements SampleView {
     private static final String TAG = "SampleFragment";
@@ -26,6 +27,7 @@ public class SampleFragment extends BasePresenterFragment<SamplePresenter, Sampl
     private TextView titleTextView;
     private SamplePresenter presenter;
 
+    @DebugLog
     public static SampleFragment newInstance(String name, @ColorRes int color) {
         Bundle args = new Bundle();
         args.putString(ARG_NAME, name);
@@ -36,7 +38,7 @@ public class SampleFragment extends BasePresenterFragment<SamplePresenter, Sampl
         return fragment;
     }
 
-
+    @DebugLog
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -48,6 +50,7 @@ public class SampleFragment extends BasePresenterFragment<SamplePresenter, Sampl
         Log.e(TAG, "onCreate-" + name);
     }
 
+    @DebugLog
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {

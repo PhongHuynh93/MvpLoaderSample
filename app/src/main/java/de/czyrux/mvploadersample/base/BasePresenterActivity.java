@@ -6,6 +6,8 @@ import android.support.v4.content.Loader;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 
+import hugo.weaving.DebugLog;
+
 public abstract class BasePresenterActivity<P extends Presenter<V>, V> extends AppCompatActivity {
 
     private static final String TAG = "base-activity";
@@ -46,6 +48,7 @@ public abstract class BasePresenterActivity<P extends Presenter<V>, V> extends A
         getSupportLoaderManager().initLoader(LOADER_ID, null, new LoaderManager.LoaderCallbacks<P>() {
             // khi băt đầu thì trong hàm này tạo presenter bằng constructor
             @Override
+            @DebugLog
             public final Loader<P> onCreateLoader(int id, Bundle args) {
                 Log.i(TAG, "onCreateLoader");
                 return new PresenterLoader<>(BasePresenterActivity.this, getPresenterFactory(), tag());
@@ -53,6 +56,7 @@ public abstract class BasePresenterActivity<P extends Presenter<V>, V> extends A
 
             // khi finish load presenter thì gắn presenter vào
             @Override
+            @DebugLog
             public final void onLoadFinished(Loader<P> loader, P presenter) {
                 Log.i(TAG, "onLoadFinished");
                 BasePresenterActivity.this.presenter = presenter;
@@ -61,6 +65,7 @@ public abstract class BasePresenterActivity<P extends Presenter<V>, V> extends A
 
             // khi loader hoàn thành nhiệm vụ thì gán presenter bằng null
             @Override
+            @DebugLog
             public final void onLoaderReset(Loader<P> loader) {
                 Log.i(TAG, "onLoaderReset");
                 BasePresenterActivity.this.presenter = null;
@@ -74,6 +79,7 @@ public abstract class BasePresenterActivity<P extends Presenter<V>, V> extends A
      *
      */
     @Override
+    @DebugLog
     protected void onStart() {
         super.onStart();
         Log.i(TAG, "onStart-" + tag());
@@ -84,6 +90,7 @@ public abstract class BasePresenterActivity<P extends Presenter<V>, V> extends A
      * todo 9b
      */
     @Override
+    @DebugLog
     protected void onStop() {
         presenter.onViewDetached();
         super.onStop();

@@ -13,6 +13,7 @@ import de.czyrux.mvploadersample.base.PresenterFactory;
 import de.czyrux.mvploadersample.presenter.SamplePresenter;
 import de.czyrux.mvploadersample.presenter.SamplePresenterFactory;
 import de.czyrux.mvploadersample.presenter.SampleView;
+import hugo.weaving.DebugLog;
 
 /**
  * we need to connects our activities and fragments.
@@ -38,6 +39,7 @@ public class SampleActivity extends BasePresenterActivity<SamplePresenter, Sampl
         }
     }
 
+    @DebugLog
     @Override
     protected void onStart() {
         super.onStart();
